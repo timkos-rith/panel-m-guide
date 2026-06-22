@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华体会 · 信息卡片介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f7f8fa;
+            color: #1e2a3e;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            line-height: 1.65;
+            padding: 2.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* hero 区域 — 极简留白卡片 */
+        .hero-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2.5rem 2rem 2rem 2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03), 0 1px 4px rgba(0, 0, 0, 0.02);
+            margin-bottom: 2rem;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            color: #6f7e95;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            background: #eef1f5;
+            padding: 0.2rem 0.7rem;
+            border-radius: 40px;
+        }
+
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            color: #0f1a2c;
+        }
+
+        h1 .accent {
+            color: #2a6f97;
+            font-weight: 550;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            color: #2d3d54;
+            max-width: 90%;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e3e8ef;
+            margin: 2rem 0;
+        }
+
+        /* 标题层级 */
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 540;
+            letter-spacing: -0.01em;
+            margin-bottom: 1rem;
+            color: #14273e;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 550;
+            margin-bottom: 0.4rem;
+            color: #1e314b;
+        }
+
+        /* 卡片网格 (用途卡片 + 人群卡片) */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .info-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.4rem 1.6rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid #edf0f5;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .info-card p {
+            font-size: 0.95rem;
+            color: #2d3f59;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-card .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #4a6382;
+            background: #eef2f8;
+            border-radius: 30px;
+            padding: 0.1rem 0.65rem;
+            margin-right: 0.4rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* 人群标签行 */
+        .audience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.6rem;
+            margin: 0.8rem 0 0.2rem;
+        }
+
+        .audience-tag {
+            background: #eef2f8;
+            color: #1b3149;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            letter-spacing: 0.01em;
+        }
+
+        /* 自然链接段落 */
+        .link-paragraph {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.6rem 1.8rem;
+            margin: 0 0 2rem 0;
+            border: 1px solid #eef1f6;
+            font-size: 0.98rem;
+            color: #1e344a;
+            line-height: 1.7;
+        }
+
+        .link-paragraph a {
+            color: #1d5f8b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #b9cee3;
+            padding-bottom: 0.05rem;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .link-paragraph a:hover {
+            color: #083a5a;
+            border-bottom-color: #083a5a;
+        }
+
+        /* FAQ 摘要 (简洁) */
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.5rem 1.8rem;
+            border: 1px solid #eef1f6;
+            margin-bottom: 2rem;
+        }
+
+        .faq-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #f0f3f8;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 550;
+            color: #14273e;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.1rem;
+        }
+
+        .faq-a {
+            font-size: 0.85rem;
+            color: #43607c;
+            margin-top: 0.05rem;
+        }
+
+        .faq-a a {
+            color: #1d5f8b;
+            text-decoration: none;
+            border-bottom: 1px solid #c7d6e8;
+        }
+
+        .faq-a a:hover {
+            border-bottom-color: #1d5f8b;
+        }
+
+        /* 微小脚注 */
+        .footnote {
+            font-size: 0.75rem;
+            color: #6f829e;
+            margin-top: 1.8rem;
+            text-align: center;
+            letter-spacing: 0.01em;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 500px) {
+            body {
+                padding: 1.5rem 0.75rem;
+            }
+            .hero-card {
+                padding: 1.8rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            .info-card {
+                padding: 1.2rem 1.2rem;
+            }
+            .link-paragraph {
+                padding: 1.2rem 1.2rem;
+            }
+            .faq-mini {
+                padding: 1.2rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HERO 卡片: 主视觉 + 简短切入 -->
+    <div class="hero-card">
+        <div class="hero-tag">主题 · 信息卡片</div>
+        <h1>围绕 <span class="accent">华体会</span> 的内容框架</h1>
+        <p class="hero-desc">
+            从关键词背后的主题展开：运动社群、数据化体验与轻量互动。华体会作为聚合入口，为不同兴趣层提供直达路径。
+        </p>
+        <hr>
+        <p style="font-size:0.9rem; color:#476485;">
+            本页以信息卡片梳理用途、人群与常见问题，结构清晰，留白透气。
+        </p>
+    </div>
+
+    <!-- 用途卡片 (2个) -->
+    <h2>用途 · 场景</h2>
+    <div class="card-grid">
+        <div class="info-card">
+            <h3>🏟️ 赛事信息聚合</h3>
+            <p><span class="tag">数据</span><span class="tag">赛程</span> 覆盖主流联赛与即时比分，提供简洁的赛事卡片、战报摘要与排名走势。无需额外跳转即可获得核心赛事情报。</p>
+        </div>
+        <div class="info-card">
+            <h3>📱 社区与轻互动</h3>
+            <p><span class="tag">讨论</span><span class="tag">动态</span> 用户可围绕赛事、技巧、装备进行短内容交流。主题板块分层合理，信息流克制，关注垂直兴趣而非泛社交。</p>
+        </div>
+    </div>
+
+    <!-- 适合人群 (标签组) -->
+    <h2>适合人群</h2>
+    <div class="info-card" style="padding-bottom:0.9rem;">
+        <div class="audience-tags">
+            <span class="audience-tag">⚡ 赛事观察者</span>
+            <span class="audience-tag">📊 数据爱好者</span>
+            <span class="audience-tag">🧑‍🤝‍🧑 社群参与者</span>
+            <span class="audience-tag">📱 移动优先用户</span>
+            <span class="audience-tag">🎯 轻内容阅读者</span>
+        </div>
+        <p style="font-size:0.8rem; color:#4b6888; margin-top:0.5rem;">
+            无论你习惯深度数据还是即时简讯，都能在不同模块中找到对应节奏。
+        </p>
+    </div>
+
+    <!-- 自然链接段落 (嵌入华体会链接) -->
+    <div class="link-paragraph">
+        <p style="margin-bottom:0.4rem;">
+            <strong>如何理解这个生态？</strong> 平台以模块化方式组织内容，其中 
+            <a href="https://panel-m-hth.com">华体会</a> 
+            承担了核心导航与身份聚合作用，所有兴趣卡片、赛事面板与社区入口均由此统一调配。你可以把它理解为连接不同信息层的枢纽，而非单一的资讯页面。
+        </p>
+        <p style="margin-top:0.5rem; color:#2a3f59;">
+            从数据看板到话题列表，各区块保持独立却又通过同一账户体系串联，实现“一次接入，多处同步”。这种设计在轻量与完整之间取得平衡。
+        </p>
+    </div>
+
+    <!-- FAQ 摘要 (4条) -->
+    <h2>常见疑问 · 摘要</h2>
+    <div class="faq-mini">
+        <div class="faq-item">
+            <span class="faq-q">▸ 内容更新频率如何？</span>
+            <div class="faq-a">赛程数据与社区动态均为实时更新，重要赛事节点会以卡片形式置顶。部分分析类内容按周更迭。</div>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">▸ 是否需要注册才能浏览？</span>
+            <div class="faq-a">基础赛事卡片与比分无需登录可查看；参与讨论或收藏板块则需要轻量注册。详情可参考 <a href="https://panel-m-hth.com">华体会</a> 内的指引说明。</div>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">▸ 移动端适配如何？</span>
+            <div class="faq-a">界面采用响应式布局，窄屏下卡片自动堆叠，字体与触控区域均有对应优化，常用操作可在单手范围内完成。</div>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">▸ 信息卡片是否支持分享？</span>
+            <div class="faq-a">每个卡片模块均带有一键复制链接与快速分享功能（仅分享摘要，不含个人数据）。</div>
+        </div>
+    </div>
+
+    <!-- 极简脚注 -->
+    <div class="footnote">
+        <span>内容框架 · 卡片式索引</span>
+    </div>
+
+</div>
+</body>
+</html>
